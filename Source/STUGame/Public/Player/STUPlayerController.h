@@ -1,0 +1,18 @@
+// Shoot Them Up Game. 
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/PlayerController.h"
+#include "STUPlayerController.generated.h"
+
+/**
+ * 
+ */
+UCLASS()
+class STUGAME_API ASTUPlayerController : public APlayerController
+{
+	GENERATED_BODY()
+	
+
+};
