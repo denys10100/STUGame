@@ -33,9 +33,17 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
     UTextRenderComponent* HealthTextComponent;
 
-    UPROPERTY(EditDefaultsOnly)
+    UPROPERTY(EditDefaultsOnly, Category = "Animation")
     UAnimMontage* DeathAnimMontage;
 
+    UPROPERTY(EditDefaultsOnly, Category = "Damage")
+    float LifeSpanOnDeath = 5.0f;
+
+    UPROPERTY(EditDefaultsOnly, Category = "Damage")
+    FVector2D LandedDamageVelocity = FVector2D(900.0f, 1200.0f);
+
+    UPROPERTY(EditDefaultsOnly, Category = "Damage")
+    FVector2D LandedDamage = FVector2D(10.0f, 100.0f);
     virtual void BeginPlay() override;
 
 public:
@@ -52,6 +60,8 @@ public:
     float GetMovementDirection() const;
 
 private:
+    // FTimerHandle TimerHandle;
+
     bool WantsToRun = false;
     bool IsMovingForward = false;
     void MoveForward(float Amount);
@@ -62,4 +72,7 @@ private:
 
     void OnDeath();
     void OnHealthChange(float Health);
+
+    UFUNCTION()
+    void OnGroundLanded(const FHitResult& Hit);
 };
