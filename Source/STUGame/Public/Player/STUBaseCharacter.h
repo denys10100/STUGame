@@ -11,6 +11,7 @@ class USpringArmComponent;
 class USTUHealthComponent;
 class UTextRenderComponent;
 class ASTUBaseWeapon;
+class USTUWeaponComponent;
 
 UCLASS()
 class STUGAME_API ASTUBaseCharacter : public ACharacter
@@ -18,7 +19,6 @@ class STUGAME_API ASTUBaseCharacter : public ACharacter
     GENERATED_BODY()
 
 public:
-    // Sets default values for this character's properties
     ASTUBaseCharacter(const FObjectInitializer& ObjInit);
 
 protected:
@@ -34,6 +34,9 @@ protected:
     UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
     UTextRenderComponent* HealthTextComponent;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+    USTUWeaponComponent* WeaponComponent;
+
     UPROPERTY(EditDefaultsOnly, Category = "Animation")
     UAnimMontage* DeathAnimMontage;
 
@@ -46,16 +49,11 @@ protected:
     UPROPERTY(EditDefaultsOnly, Category = "Damage")
     FVector2D LandedDamage = FVector2D(10.0f, 100.0f);
 
-    UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-    TSubclassOf<ASTUBaseWeapon> WeaponClass;
-
     virtual void BeginPlay() override;
 
 public:
-    // Called every frame
     virtual void Tick(float DeltaTime) override;
 
-    // Called to bind functionality to input
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
     UFUNCTION(BlueprintCallable, Category = "Movement")
@@ -65,8 +63,6 @@ public:
     float GetMovementDirection() const;
 
 private:
-    // FTimerHandle TimerHandle;
-
     bool WantsToRun = false;
     bool IsMovingForward = false;
     void MoveForward(float Amount);
@@ -80,6 +76,4 @@ private:
 
     UFUNCTION()
     void OnGroundLanded(const FHitResult& Hit);
-
-    void SpawnWeapon();
 };

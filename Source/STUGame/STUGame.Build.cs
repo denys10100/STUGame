@@ -12,7 +12,13 @@ public class STUGame : ModuleRules
 
         PrivateDependencyModuleNames.AddRange(new string[] { });
 
-        PublicIncludePaths.AddRange(new string[] { "STUGame/Public/Player", "STUGame/Public/Components", "STUGame/Public/Dev", "STUGame/Public/Weapon" });
+        PublicIncludePaths.AddRange(new string[] {
+            "STUGame/Public/Player",
+            "STUGame/Public/Components",
+            "STUGame/Public/Dev",
+            "STUGame/Public/Weapon",
+            "STUGame/Public/UI"
+        });
         // Uncomment if you are using Slate UI
         // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 
